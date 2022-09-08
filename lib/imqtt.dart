@@ -1,6 +1,6 @@
 import 'imqtt_platform_interface.dart';
 
-enum ImqttState { connecting, error, connected, closing, closed }
+enum ImqttState { starting,connecting, error, connected, closing, closed }
 
 class Imqtt {
   ///连接
