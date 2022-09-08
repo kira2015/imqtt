@@ -9,7 +9,8 @@
 
 @interface ImqttEvent ()<FlutterStreamHandler>
 @property (nonatomic, strong) FlutterEventChannel *eventChannel;
-
+// typedef void (^FlutterEventSink)(id _Nullable event);
+@property (nonatomic, strong) FlutterEventSink eventSink;
 @end
 @implementation ImqttEvent
 
@@ -36,5 +37,10 @@ static ImqttEvent *_ee=nil;
 - (FlutterError * _Nullable)onListenWithArguments:(id _Nullable)arguments eventSink:(nonnull FlutterEventSink)events {
     self.eventSink = events;
     return nil;
+}
+-(void)sendEvent:(id)obj{
+    if (self.eventSink) {
+        self.eventSink(obj);
+    }
 }
 @end

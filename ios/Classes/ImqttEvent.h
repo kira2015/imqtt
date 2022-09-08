@@ -11,11 +11,13 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ImqttEvent : NSObject
-// typedef void (^FlutterEventSink)(id _Nullable event);
-@property (nonatomic, strong) FlutterEventSink eventSink;
+
 
 + (ImqttEvent*)event;
+
 + (instancetype)shareWithName:(NSString*)name binaryMessenger:(NSObject<FlutterBinaryMessenger>*)messenger;
+
+-(void)sendEvent:(id)obj;
 @end
 
 NS_ASSUME_NONNULL_END

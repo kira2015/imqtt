@@ -90,7 +90,7 @@
         @"payload":jsonString
     };
     self.contentMap = map;
-    [ImqttEvent event].eventSink([self sinkContent]);
+    [[ImqttEvent event] sendEvent:[self sinkContent]];
 }
 
 - (void)sessionManager:(MQTTSessionManager *)sessionManager didChangeState:(MQTTSessionManagerState)newState{
@@ -121,7 +121,7 @@
         default:
             break;
     }
-    [ImqttEvent event].eventSink([self sinkContent]);
+    [[ImqttEvent event] sendEvent:[self sinkContent]];
 }
 
 
