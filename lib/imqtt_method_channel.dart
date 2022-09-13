@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
+import 'package:imqtt/imqtt.dart';
 
 import 'imqtt_platform_interface.dart';
 
@@ -17,8 +18,14 @@ class MethodChannelImqtt extends ImqttPlatform {
   }
 
   @override
-  Stream getStream() {
-    return eventChannel.receiveBroadcastStream();
+  Stream<MQMsgModel?> getStream() {
+    final stream = eventChannel.receiveBroadcastStream();
+    return stream.map((event) {
+      if (event is Map) {
+        return MQMsgModel.fromJson(event);
+      }
+      return null;
+    });
   }
 
   @override
@@ -31,6 +38,7 @@ class MethodChannelImqtt extends ImqttPlatform {
     topicsSource[topic] = 1;
     methodChannel.invokeMethod('join', topicsSource);
   }
+
   @override
   void unsubscribe({required String topic}) {
     topicsSource.remove(topic);

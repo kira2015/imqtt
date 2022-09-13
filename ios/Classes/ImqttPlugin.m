@@ -6,7 +6,7 @@
 @property (nonatomic,strong) MQTTSessionManager *sessionManager;
 @property (nonatomic,assign) MQTTSessionManagerState state;
 @property (nonatomic,strong) NSString *errorCode;
-@property (nonatomic,strong) NSDictionary *contentMap;
+@property (nonatomic,strong) NSString *payload;
 @end
 
 
@@ -26,7 +26,7 @@
 - (void)initValue{
     self.state = 0;
     self.errorCode = @"";
-    self.contentMap = @{};
+    self.payload = @"";
 }
 
 - (void)handleMethodCall:(FlutterMethodCall*)call result:(FlutterResult)result {
@@ -85,12 +85,8 @@
 
 - (void)handleMessage:(NSData *)data onTopic:(NSString *)topic retained:(BOOL)retained{
     NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    NSDictionary *map = @{
-        @"topic":topic,
-        @"payload":jsonString
-    };
-    self.contentMap = map;
-    [[ImqttEvent event] sendEvent:[self sinkContent]];
+    self.payload = jsonString;
+    [[ImqttEvent event] sendEvent:[self sinkContentOnTopic:topic]];
 }
 
 - (void)sessionManager:(MQTTSessionManager *)sessionManager didChangeState:(MQTTSessionManagerState)newState{
@@ -121,7 +117,7 @@
         default:
             break;
     }
-    [[ImqttEvent event] sendEvent:[self sinkContent]];
+    [[ImqttEvent event] sendEvent:[self sinkContentOnTopic:@"main"]];
 }
 
 
@@ -134,10 +130,11 @@
     return _sessionManager;
 }
 
-- (NSDictionary*)sinkContent{
+- (NSDictionary*)sinkContentOnTopic:(NSString *)topic{
     return @{
         @"state":@(self.state),
-        @"content":self.contentMap,
+        @"topic":topic,
+        @"payload":self.payload,
         @"error":self.errorCode
     };
 }

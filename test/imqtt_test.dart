@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:imqtt/imqtt_msg_model.dart';
 import 'package:imqtt/imqtt_platform_interface.dart';
 import 'package:imqtt/imqtt_method_channel.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
@@ -17,7 +18,7 @@ class MockImqttPlatform
   }
   
   @override
-  Stream getStream() {
+  Stream<MQMsgModel> getStream() {
     // TODO: implement getStream
     throw UnimplementedError();
   }

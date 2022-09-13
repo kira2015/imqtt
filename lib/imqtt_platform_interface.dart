@@ -1,3 +1,4 @@
+import 'package:imqtt/imqtt_msg_model.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'imqtt_method_channel.dart';
@@ -28,7 +29,7 @@ abstract class ImqttPlatform extends PlatformInterface {
   Future<bool> connect({required Map args}) {
     throw UnimplementedError('ImqttPlatform() has not been implemented.');
   }
-  Stream getStream(){
+  Stream<MQMsgModel?> getStream(){
     throw UnimplementedError('ImqttPlatform() has not been implemented.');
   }
   void disconnect(){
