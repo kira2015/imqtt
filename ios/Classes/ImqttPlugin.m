@@ -34,7 +34,7 @@
     if([@"connect" isEqualToString:call.method]){
         NSLog(@"connect收到信息参数:%@",call.arguments);
         [self connectWithMap:call.arguments result:result];
-    }else if([@"join" isEqualToString:call.method]){
+    }else if([@"subscribe" isEqualToString:call.method]){
         NSLog(@"加入订阅:%@",call.arguments);
         self.sessionManager.subscriptions = call.arguments;
     }else if([@"unsubscribe" isEqualToString:call.method]){

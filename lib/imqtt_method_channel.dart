@@ -34,9 +34,9 @@ class MethodChannelImqtt extends ImqttPlatform {
   }
 
   @override
-  void join({required String topic}) {
+  void subscribe({required String topic}) {
     topicsSource[topic] = 1;
-    methodChannel.invokeMethod('join', topicsSource);
+    methodChannel.invokeMethod('subscribe', topicsSource);
   }
 
   @override

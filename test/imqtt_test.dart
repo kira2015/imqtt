@@ -29,7 +29,7 @@ class MockImqttPlatform
   }
   
   @override
-  void join({required String topic}) {
+  void subscribe({required String topic}) {
     // TODO: implement join
   }
   

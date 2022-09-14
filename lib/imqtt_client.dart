@@ -1,4 +1,3 @@
-
 import 'imqtt.dart';
 import 'imqtt_platform_interface.dart';
 
@@ -25,9 +24,8 @@ class Imqtt {
   /// /*
   /// {
   ///   state: $ImqttState,
-  ///   content:{
-  ///     topic:topic,payload:payload
-  ///    },
+  ///   topic:topic,
+  ///   payload:payload
   ///   error:xxx
   /// }
   ///  */
@@ -41,8 +39,8 @@ class Imqtt {
   }
 
   ///订阅主题
-  void join({required String topic}) {
-    ImqttPlatform.instance.join(topic: topic);
+  void subscribe({required String topic}) {
+    ImqttPlatform.instance.subscribe(topic: topic);
   }
 
   ///取消订阅

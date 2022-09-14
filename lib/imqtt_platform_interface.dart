@@ -36,7 +36,7 @@ abstract class ImqttPlatform extends PlatformInterface {
     throw UnimplementedError('ImqttPlatform() has not been implemented.');
   }
 
-  void join({required String topic}) {
+  void subscribe({required String topic}) {
     throw UnimplementedError('ImqttPlatform() has not been implemented.');
   }
 

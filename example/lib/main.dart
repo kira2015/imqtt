@@ -58,13 +58,13 @@ class _MyAppState extends State<MyApp> {
                   child: const Text('连接mqtt')),
               TextButton(
                   onPressed: () async {
-                    _imqttPlugin.join(
+                    _imqttPlugin.subscribe(
                         topic: 'xxx/IM/willTopic');
                   },
                   child: const Text('订阅')),
               TextButton(
                   onPressed: () async {
-                    _imqttPlugin.join(topic: 'q123');
+                    _imqttPlugin.subscribe(topic: 'q123');
                   },
                   child: const Text('订阅2')),
               TextButton(
