@@ -1,3 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
   package="com.itouchtv.mqtt.imqtt">
+    <application>
+        <service
+            android:name=".MqttService"
+            android:exported="true" />
+    </application>
 </manifest>
