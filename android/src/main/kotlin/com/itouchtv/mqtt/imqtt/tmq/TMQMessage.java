@@ -1,7 +1,8 @@
 package com.itouchtv.mqtt.imqtt.tmq;
 
 
-import com.itouchtv.mqtt.imqtt.mqttv3.MqttMessage;
+
+import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import java.util.Random;
 

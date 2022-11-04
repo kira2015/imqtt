@@ -4,15 +4,14 @@ import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.itouchtv.mqtt.imqtt.mqttv3.IMqttActionListener;
-import com.itouchtv.mqtt.imqtt.mqttv3.IMqttDeliveryToken;
-import com.itouchtv.mqtt.imqtt.mqttv3.IMqttToken;
-import com.itouchtv.mqtt.imqtt.mqttv3.MqttAsyncClient;
-import com.itouchtv.mqtt.imqtt.mqttv3.MqttCallbackExtended;
-import com.itouchtv.mqtt.imqtt.mqttv3.MqttConnectOptions;
-import com.itouchtv.mqtt.imqtt.mqttv3.MqttException;
-import com.itouchtv.mqtt.imqtt.mqttv3.MqttMessage;
-
+import org.eclipse.paho.client.mqttv3.IMqttActionListener;
+import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
+import org.eclipse.paho.client.mqttv3.IMqttToken;
+import org.eclipse.paho.client.mqttv3.MqttAsyncClient;
+import org.eclipse.paho.client.mqttv3.MqttCallbackExtended;
+import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
+import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -153,7 +152,7 @@ public class TMQClient {
             mMap.put("topicId", "");
             mMap.put("subscribe", 2);//0取消订阅，1订阅 2.非正常掉线时取消订阅所有topic
             mMap.put("appId", TMQ_APPID);
-            mMap.put("connId", mConnOpts.getConnId());
+            //mMap.put("connId", mConnOpts.getConnId());
             mMap.put("messageId", TMQMessage.generateMessageId());
             mMap.put("client", 0);
         } catch (JSONException mE) {
@@ -241,7 +240,7 @@ public class TMQClient {
                 }
                 connOpts.setUserName(userName);
                 connOpts.setPassword(password.toCharArray());
-                connOpts.setConnId(System.currentTimeMillis());
+                //connOpts.setConnId(System.currentTimeMillis());
                 setupWill(connOpts);
                 mqttClient.connect(connOpts, null, new IMqttActionListener() {
                     @Override
@@ -380,7 +379,7 @@ public class TMQClient {
                         mMap.put("topicId", subStringTopic(topic));
                         mMap.put("subscribe", 1);//0取消订阅，1订阅
                         mMap.put("appId", TMQ_APPID);
-                        mMap.put("connId", connOpts.getConnId());
+                        //mMap.put("connId", connOpts.getConnId());
                         mMap.put("messageId", TMQMessage.generateMessageId());
                         mMap.put("client", 0);
                     } catch (JSONException mE) {
@@ -430,7 +429,7 @@ public class TMQClient {
                         mMap.put("topicId", topic);
                         mMap.put("subscribe", 1);//0取消订阅，1订阅
                         mMap.put("appId", TMQ_APPID);
-                        mMap.put("connId", connOpts.getConnId());
+                        //mMap.put("connId", connOpts.getConnId());
                         mMap.put("messageId", TMQMessage.generateMessageId());
                         mMap.put("client", 0);
                     } catch (JSONException mE) {
@@ -479,7 +478,7 @@ public class TMQClient {
                         mMap.put("topicId", subStringTopic(topic));
                         mMap.put("subscribe", 0);//0取消订阅，1订阅
                         mMap.put("appId", TMQ_APPID);
-                        mMap.put("connId", connOpts.getConnId());
+                        //mMap.put("connId", connOpts.getConnId());
                         mMap.put("messageId", TMQMessage.generateMessageId());
                         mMap.put("client", 0);
                     } catch (JSONException mE) {
@@ -529,7 +528,7 @@ public class TMQClient {
                         mMap.put("topicId", topic);
                         mMap.put("subscribe", 0);//0取消订阅，1订阅
                         mMap.put("appId", TMQ_APPID);
-                        mMap.put("connId", connOpts.getConnId());
+                        //mMap.put("connId", connOpts.getConnId());
                         mMap.put("messageId", TMQMessage.generateMessageId());
                         mMap.put("client", 0);
                     } catch (JSONException mE) {
